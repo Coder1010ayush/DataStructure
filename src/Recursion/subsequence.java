@@ -11,27 +11,27 @@ public class subsequence {
         System.out.println(list);
     }
 
-    // private static void subsequences(int i, int[] arr, ArrayList<Integer> ans,int n) {
-    //         if(i==n){
-    //             if(ans.size()==0){
-    //                 System.out.print("{}");
-    //             }
-    //             for (Integer integer : ans) {
-    //                 System.out.print(integer+" ");
-    //             }
-    //             System.out.println();
-    //             return;
-    //         }
-    //         ans.add(arr[i]);
-    //         subsequences(i+1, arr, ans, n);
+    private static void subsequences(int i, int[] arr, ArrayList<Integer> ans,int n) {
+            if(i==n){
+                if(ans.size()==0){
+                    System.out.print("{}");
+                }
+                for (Integer integer : ans) {
+                    System.out.print(integer+" ");
+                }
+                System.out.println();
+                return;
+            }
+            ans.add(arr[i]);
+            subsequences(i+1, arr, ans, n);
             
 
-    //         ans.remove(ans.size()-1);
-    //         subsequences(i+1, arr, ans, n);
+            ans.remove(ans.size()-1);
+            subsequences(i+1, arr, ans, n);
             
             
 
-    // }
+     }
 
     private static ArrayList<ArrayList<Integer>> sub(int i,int[] nums,ArrayList<Integer> ans,ArrayList<ArrayList<Integer>> list,int n){
         if(i==n){

@@ -4,7 +4,6 @@ package Tree;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class methods {
     Scanner scanner = new Scanner(System.in);
@@ -137,8 +136,9 @@ public class methods {
         System.out.print(root.val+" ");
         if(root.left!=null && root.right!= null){
             System.out.print(root.left.val+" ");
-            System.out.print(root.right+" ");
-        }else return;
+            System.out.print(root.right.val+" ");
+        }
+        else return;
 
     }
     public void depthFirstSearch(){
