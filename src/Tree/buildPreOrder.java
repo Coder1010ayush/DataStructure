@@ -65,6 +65,57 @@ public class buildPreOrder {
         return Math.max(ans, Math.max(left, right));
     }
 
+    public boolean isSameTree(Node root1,Node root2){
+
+        if(root1==null && root2==null) return false;
+        if(root1 == null || root2 == null) return false;
+        if(root1.data == root2.data) return true; 
+
+        return isSameTree(root1.left, root2.left) && isSameTree(root1.right, root2.right);
+    }
+
+    public Node invertTree(Node root){
+
+        if(root==null) return root;
+        Node local = root.left;
+        root.left = root.right;
+        root.right = local;
+        return root;
+
+
+    }
+
+
+    public boolean symmetricTree(Node root){
+        if(root == null) return true;
+        if(root.left == null && root.right != null) return false;
+        if(root.left != null && root.right == null) return false; 
+
+        Node left = root.left;
+        left = invertTree(left);
+        Node rigth = root.right;
+        return isSameTree(left, rigth);
+    }
+
+
+    public int multiply(Node root){
+        if(root == null) return 1;
+        int a = root.data;
+        return a*multiply(root.left)*multiply(root.right);
+
+    }
+
+    public int sum(Node root){
+        if(root == null) return 0;
+        int a = root.data;
+        return a+sum(root.left)+sum(root.right);
+    }
+
+    public int numberOfLevel(Node root){
+        return height(root)-1;
+    }
+
+    
 
     
 }

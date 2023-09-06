@@ -100,7 +100,7 @@ public class implement {
 //        System.out.println();
 //        System.out.println(max(root));
 //        System.out.println(min(root));
-    //    System.out.println(multiply(root));
+       System.out.println(multiply(root));
     }
 
 }
