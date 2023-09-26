@@ -31,7 +31,7 @@ public class secondLarge {
         arr.add(12);
         arr.add(10);
         arr.add(10);
-        ArrayList<Integer> ans = removeDuplicates(arr);
-        System.out.println(ans);
+       // ArrayList<Integer> ans = removeDuplicates(arr);
+        System.out.println(arr);
     }
 }
