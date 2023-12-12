@@ -401,28 +401,29 @@ public class day2 {
         return ans;
     }
 
-    // LeetCode 2707. Extra Characters in a String
-    private static int minExtraChar(String s, String[] dictionary) {
-        int ans = 0;
-        HashMap<Character,Integer> mapp = new HashMap<>();
-        for(int i=0;i<dictionary.length;i++){
-            String str = dictionary[i];
-            for(int j=0;j<str.length();j++){
-                if(mapp.containsKey(str.charAt(j))){
-                    int x = mapp.get(str.charAt(j));
-                    mapp.remove(str.charAt(j));
-                    mapp.put(str.charAt(j), x+1);
-                }else{
-                    mapp.put(str.charAt(j), 1);
+    // 2643. Row With Maximum Ones
+    private static int[] rowAndMaximumOnes(int[][] mat) {
+        int mini_row = Integer.MAX_VALUE;
+        int max_count = Integer.MIN_VALUE;
+        for(int row = 0;row<mat.length;row++){
+            int[] a = mat[row];
+            int count = 0;
+            for(int i=0;i<a.length;i++){
+                if(a[i]==1){
+                    count++;
                 }
             }
-        }
-
-        for(int i=0;i<s.length();i++){
-            if(mapp.containsKey(s.charAt(j))){
-                if(mapp.get(s.charAt(i))==1) ans++;
+            if(max_count<count){
+                max_count = count;
+                mini_row = row;
             }
+            if(max_count == count){
+                mini_row = Math.min(row,mini_row);
+            }
+
+
         }
+        int[] ans = {mini_row,max_count};
         return ans;
     }
     public static void main(String[] args) {
