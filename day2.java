@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -372,6 +373,58 @@ public class day2 {
         }
         return ans;
     }
+    // 2150. Find All Lonely Numbers in the Array
+    private static List<Integer> findLonely(int[] nums) {
+        List<Integer> ans = new ArrayList<>();
+        HashMap<Integer,Integer> mapp = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            if(!mapp.containsKey(nums[i])){
+                mapp.put(nums[i], 1);
+            }
+            else{
+                int  x = mapp.get(nums[i]);
+                mapp.remove(nums[i]);
+                mapp.put(nums[i], x+1);
+            }
+        }
+        for(int i=0;i<nums.length;i++){
+            int x = nums[i];
+            int n1 = x+1;
+            int n2 = x-1;
+            if(mapp.get(x)==1){
+                if(!mapp.containsKey(n1) && !mapp.containsKey(n2)){
+                    ans.add(nums[i]);
+                }
+            }
+        }
+        
+        return ans;
+    }
+
+    // LeetCode 2707. Extra Characters in a String
+    private static int minExtraChar(String s, String[] dictionary) {
+        int ans = 0;
+        HashMap<Character,Integer> mapp = new HashMap<>();
+        for(int i=0;i<dictionary.length;i++){
+            String str = dictionary[i];
+            for(int j=0;j<str.length();j++){
+                if(mapp.containsKey(str.charAt(j))){
+                    int x = mapp.get(str.charAt(j));
+                    mapp.remove(str.charAt(j));
+                    mapp.put(str.charAt(j), x+1);
+                }else{
+                    mapp.put(str.charAt(j), 1);
+                }
+            }
+        }
+
+        for(int i=0;i<s.length();i++){
+            if(mapp.containsKey(s.charAt(j))){
+                if(mapp.get(s.charAt(i))==1) ans++;
+            }
+        }
+        return ans;
+    }
     public static void main(String[] args) {
         int[] arr = {1,1,2,3,4,5,6};
       //  System.out.println(Arrays.toString(arr));
@@ -379,5 +432,6 @@ public class day2 {
         // convertBase(16,2,a);
         // System.out.println(convertBase(16,2,a));
         System.out.println('9'-'0');
+        
     }
 }
