@@ -285,7 +285,7 @@ public class day2 {
         }
         return sum;
     }
-    
+
     // 53. Maximum Subarray
     private static int maxSubArray(int[] nums) {
         if(nums.length==1) return nums[0];
@@ -298,9 +298,86 @@ public class day2 {
         }
         return ans;
     }
-   
+    // LeetCode 1837. Sum of Digits in Base K
+    private static int calculate_sum(int x){
+        int sum =0;
+        while(x>0){
+            int rem = x%10;
+            sum += rem;
+            x = x/10;
+        }
+        return sum;
+    }
+
+    private static int calculate_sum_String(String str){
+        int sum = 0;
+        for(int i=0;i<str.length();i++){
+            int a = str.charAt(i)-'0';
+            sum += a;
+        }
+        return sum;
+    }
+    private static String convertBase(int n,int k,String new_var){
+
+        if(n<=0) return new_var;
+        int a = n%k;
+        new_var = new_var.concat(a+"");
+        return convertBase(n/k, k, new_var);
+
+    }
+    private static int sumBase(int n, int k) {
+        String st = "";
+        String str = convertBase(n, k, st);
+        int ans = calculate_sum_String(str);
+        return ans;
+    }
+    
+    // LeetCode : 1838. Frequency of the Most Frequent Element
+    private static long[] prefixSum(int[] nums){
+        long[] arr = new long[nusm.length];
+        arr[0] = nums[0];
+        for(int i=1;i<nums.length;i++){
+            arr[i] = arr[i-1]+nums[i];
+        }
+        return arr;
+    }
+
+    private static int bSearch(int[] nums,int k,int target_idx,long[] prefix){
+        int result = 0;
+        int l = 0;
+        int r = target_idx;
+        while(l<=r){
+            int mid = l+(r-l)/2;
+            long count = target_idx-mid+1;
+            long sum_of_window = count*nums[target_idx];
+            long current_sum = prefix[target_idx]-prefix[mid]+nums[mid];
+            long remaining = sum_of_window-current_sum;
+            if(remaining>k){
+                l = mid+1;
+            }else{
+                result = mid;
+                r = mid-1;
+            }
+        }
+        return (int) target_idx-result+1;
+    }
+
+    private static int maxFrequency(int[] nums, int k) {
+        int ans = 0;
+        Arrays.sort(nums);
+        long[] prefix = prefixSum(nums);
+        for(int i=0;i<nums.length;i++){
+            int res = bSearch(nums,k,i,prefix);
+            ans = Math.max(ans, res);
+        }
+        return ans;
+    }
     public static void main(String[] args) {
         int[] arr = {1,1,2,3,4,5,6};
-        System.out.println(Arrays.toString(arr));
+      //  System.out.println(Arrays.toString(arr));
+        // String a = "";
+        // convertBase(16,2,a);
+        // System.out.println(convertBase(16,2,a));
+        System.out.println('9'-'0');
     }
 }
