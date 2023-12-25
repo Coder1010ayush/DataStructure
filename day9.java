@@ -47,6 +47,44 @@ public class day9 {
         return false;
     }
 
+    // LeetCode 1422 Maximum score after splitting a string
+    public static int maxScore(String s) {
+        int ans = 0;
+        int ones = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '1')
+                ones++;
+        }
+        int zeros = 0;
+        int local_ones = 0;
+        for (int i = 0; i < s.length() - 1; i++) {
+            char ch = s.charAt(i);
+            if (ch == '0')
+                zeros++;
+            if (ch == '1')
+                local_ones++;
+
+            ans = Math.max(ans, zeros + (ones - local_ones));
+        }
+        return ans;
+    }
+
+    // LeetCode 2706 Buy two chocolates
+    private static int buyChoco(int[] prices, int money) {
+        int min_price = Integer.MAX_VALUE;
+        for (int i = 0; i < prices.length; i++) {
+            for (int j = 0; j < prices.length; j++) {
+                if (i != j) {
+                    min_price = Math.min(min_price, prices[i] + prices[j]);
+                }
+            }
+            if (min_price >= 0)
+                return min_price;
+            else
+                return money;
+        }
+    }
+
     public static void main(String[] args) {
 
     }
