@@ -71,6 +71,37 @@ class day11 {
         return false;
     }
 
+    // LeetCode 383. Ransom Note
+    public boolean canConstruct(String ransomNote, String magazine) {
+        HashMap<Character, Integer> mapp1 = new HashMap<Character, Integer>();
+        HashMap<Character, Integer> mapp2 = new HashMap<Character, Integer>();
+        for (int i = 0; i < ransomNote.length(); i++) {
+            if (mapp1.containsKey(ransomNote.charAt(i))) {
+                int a = mapp1.get(ransomNote.charAt(i));
+                mapp1.put(ransomNote.charAt(i), a + 1);
+            } else {
+                mapp1.put(ransomNote.charAt(i), 1);
+            }
+        }
+        for (int i = 0; i < magazine.length(); i++) {
+            if (mapp2.containsKey(magazine.charAt(i))) {
+                int a = mapp2.get(magazine.charAt(i));
+                mapp2.put(magazine.charAt(i), a + 1);
+            } else {
+                mapp2.put(magazine.charAt(i), 1);
+            }
+        }
+        for (int i = 0; i < ransomNote.length(); i++) {
+            char ch = ransomNote.charAt(i);
+            if (!mapp2.containsKey(ch))
+                return false;
+            if (mapp1.get(ch) > mapp2.get(ch))
+                return false;
+        }
+        return true;
+
+    }
+
     public static void main(String[] args) {
         System.out.println("Starting");
 
