@@ -1,6 +1,7 @@
 /**
  * day22
  */
+
 import java.util.HashMap;
 public class day22 {
 
@@ -26,6 +27,7 @@ public class day22 {
         }
 
         return ans;
+    }
 
     public static void main(String[] args) {
         System.out.println("let us start");
