@@ -52,12 +52,14 @@ public class day26 {
     private void dfs(TreeNode left,TreeNode right , int level){
 
         if(left == null || right == null) return;
+        
         if(level %2 == 1){
 
             int value = left.val;
             left.val = right.val;
             right.val = value;
         }
+
         dfs(left.left,right.right,level+1);
         dfs(left.right,right.left,level+1);
 
