@@ -48,6 +48,12 @@ public class day33 {
         }
         return ans;
     }
+
+    // 390. Elimination Game
+    public int lastRemaining(int n) {
+        if(n==1) return 1;
+        return 2*(n/2-lastRemaining(n/2)+1);
+    }
     public static void main(String[] args) {
         System.out.println("let us start");
     }
